@@ -42,8 +42,13 @@
           <tbody>
             <% donorData.forEach(function(data) { %>
             <tr>
-              <td class="text-center"><%= data.name %></td>
-              <td class="text-center">$<%= data.balance %></td>
+              <% if(data.balance < 0){%>
+                <td class="text-center negative"><%= data.name %></td>
+                <td class="text-center negative">$<%= data.balance %></td>
+              <% }else{ %>
+                <td class="text-center "><%= data.name %></td>
+                <td class="text-center positive">$<%= data.balance %></td>
+            <% }  %>
               <td><a href="/donor/<%= data.id %>"><button class="editDonor text-right btn btn-xs btn-info">Edit</button></a></td>
             </tr>
           <% }); %>

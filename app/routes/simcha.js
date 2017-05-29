@@ -41,7 +41,7 @@ router.get('/simcha/:simchaId', (req, res) => {
               }else{
                   console.log('Successful query');
                   let donorData = JSON.parse(JSON.stringify(rows));
-                    connection.query("SELECT details.amount, contributors.name FROM details INNER JOIN contributors ON details.donorid = contributors.id WHERE details.simchaid= ? ORDER BY name",[id], function(error, rows, fields){
+                    connection.query("SELECT details.amount, contributors.name, contributors.id FROM details INNER JOIN contributors ON details.donorid = contributors.id WHERE details.simchaid= ? ORDER BY name",[id], function(error, rows, fields){
                         if(error){
                             console.log('Error with query');
                         }else{

@@ -47,8 +47,11 @@
               <select  name="donorId" class="form-control" data-style="btn-info" required>
                 <option value="" disabled selected style="display: none;">Select A Contributor</option>
                 <% donorData.forEach(function(data) { %>
-                  <option value="<%= data.id %>"><%= data.name %> ($<%= data.balance %> remaining)</option>
-                <% }); %>
+                  <% if(data.balance < 0){%>
+                  <option class="negative" value="<%= data.id %>"><%= data.name %> ($<%= data.balance %> remaining)</option>
+                <% }else{ %>
+                  <option class="positive" value="<%= data.id %>"><%= data.name %> ($<%= data.balance %> remaining)</option>
+              <% } }); %>
               </select>
               <div class="input-group">
                 <div class="input-group-addon">$</div>
@@ -70,7 +73,7 @@
               <tbody>
                 <% detailData.forEach(function(data) { %>
                 <tr>
-                  <td class="text-center"><%= data.name %></td>
+                  <td class="text-center"><a href="/donor/<%= data.id %>"><%= data.name %></a></td>
                   <td class="text-center">$<%= data.amount %></td>
                 </tr>
                 <% }); %>

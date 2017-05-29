@@ -81,3 +81,11 @@ body {
   top: -100px;
   position: absolute;
 }
+
+.positive{
+  color: darkgreen;
+}
+
+.negative{
+  color: red;
+}
