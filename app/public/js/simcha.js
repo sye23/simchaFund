@@ -15,7 +15,6 @@
         type: 'DELETE',
         success:(function(data) {
             let url = data.replace(/['"]+/g, '');
-            console.log(url);
             window.location.replace(url);
           })
         });

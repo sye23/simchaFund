@@ -13,7 +13,7 @@ router.post('/simcha/:simchaId', (req, res) => {
     if (req.body.amount) {
       connection.query("UPDATE simchas SET balance = balance + ? WHERE id = ?" , [amount  , simchaId]);
       connection.query("UPDATE contributors SET balance = balance - ? WHERE id = ?" , [amount  , donorId]);
-      connection.query("INSERT INTO details ( donorid, simchaid, amount ) values (?,?,?)" , [donorId, simchaId, amount])
+      connection.query("INSERT INTO details ( donorid, simchaid, amount ) values (?,?,?) ON DUPLICATE KEY UPDATE amount = amount+?" , [donorId, simchaId, amount, amount])
       res.redirect('/simcha/' + simchaId);
     }
   });
