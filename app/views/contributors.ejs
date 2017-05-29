@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= siteTitle %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+
+  <body id="index">
+    <% include partials/template/navbar.ejs %>
+    <div class="jumbotron">
+      <h1 class="text-center">Simcha Fund</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2">
+          <form id="addDonor" class="form-inline" method="post">
+            <div class="form-group">
+              <label for="donorName">Name</label>
+              <input type="text" class="form-control" id="donorName" name="name" placeholder="Enter Name" required>
+            </div>
+            <div class="form-group">
+              <label for="donorAmount">Amount</label>
+              <input type="number" class="form-control" id="donorAmount" name="amount" placeholder="$0.00" required>
+            </div>
+            <div class="form-group">
+              <input type="hidden" class="form-control" id="id">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New Donor
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br/>
+      <div class="panel panel-default">
+        <div class="panel-heading text-center"><strong>Donor List</strong></div>
+        <table id="donorTable" class="table table-hover table-bordered">
+          <thead>
+            <th class="text-center">Name</th>
+            <th class="text-center">Balance</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <% donorData.forEach(function(data) { %>
+            <tr>
+              <td class="text-center"><%= data.name %></td>
+              <td class="text-center">$<%= data.balance %></td>
+              <td><a href="/donor/<%= data.id %>"><button class="editDonor text-right btn btn-xs btn-info">Edit</button></a></td>
+            </tr>
+          <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"></script>
+  </body>
+
+</html>
