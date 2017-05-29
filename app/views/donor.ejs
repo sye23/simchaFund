@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= siteTitle %></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-      crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/styles.css">
-  </head>
-
+<% include partials/template/head.ejs %>
   <body id="index">
     <% include partials/template/navbar.ejs %>
     <div class="jumbotron">
@@ -20,10 +11,28 @@
       <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <% donorData.forEach(function(data) { %>
-          <h1 class="well well-lg text-center"><%= data.name %> - Balance $<%= data.balance%> <button id="deleteDonor" type="button" class="btn btn-danger">Delete</button></h1>
+          <h1 class="well well-lg text-center"><%= data.name %> - Balance $<%= data.balance%> <button id="deleteDonorModal" type="button" class="btn btn-danger btn-xs">Delete</button></h1>
           <div id="donorId">
             <%= data.id %>
           </div>
+          <div class="modal in deleteModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title text-center"><strong>Warning!</strong></h4>
+                </div>
+                <div class="modal-body">
+                  <p class="text-center">Are you sure you want to delete <%= data.name %> <strong>permanently</strong>permanently?</p>
+                  <div class="row">
+                      <div class="col-12-xs text-center">
+                          <button id="deleteDonor" class="btn btn-success btn-md">Yes</button>
+                          <button id="modalNoButton" class="btn btn-danger btn-md">No</button>
+                      </div>
+                  </div>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
             <% }); %>
         </div>
       </div>
